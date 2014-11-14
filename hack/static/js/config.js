@@ -36,7 +36,7 @@ pingwin.controller("Home", [
     $scope.get_ping = function(service){
       params = {service: service.id, name: $scope.form.url};
       // params = {name: $scope.form.url};
-      $http.post("/api/get_ping", params).success(function(data) {
+      $http.get("/api/get_ping?name="+$scope.form.url+"&service="+service.id).success(function(data) {
         data.name = service.name;
         data.country = service.country;
         $scope.ready_services.push(data);
