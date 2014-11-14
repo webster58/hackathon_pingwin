@@ -13,7 +13,9 @@
       </tr>  
       <tr>
         <td>Response code:</td>
-        <td ng-class="" >{{service.ret_code}}</td>
+        <td class="{{check_code(service.ret_code)}}">
+          {{service.ret_code}}
+        </td>
       </tr>  
       <tr>
         <td>Average time:</td>
