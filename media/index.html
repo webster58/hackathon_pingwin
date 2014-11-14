@@ -6,6 +6,9 @@
         <input type="text" class="form-control url-input" ng-model="form.url" placeholder="Type url" >
         <br/>
         <input type="submit" ng-disabled="loading.is" class="form-control btn btn-lg btn-success btn-block btn-url" value="Submit" >
+        <div class="throbber" ng-show="loading.is">
+          <image src="/media/thobber.gif"/>
+        </div>
       </div>
 
     </form>
