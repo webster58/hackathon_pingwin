@@ -1,13 +1,21 @@
 <div class="row">
   <div class="col-md-4 col-md-offset-4 url-form">
-    <form ng-submit="get_ping()">
+    <form ng-submit="get_pings()">
 
       <div class="form-group">
-        <input type="text" class="form-control" ng-model="url" placeholder="Type url" >
+        <input type="text" class="form-control url-input" ng-model="form.url" placeholder="Type url" >
         <br/>
         <input type="submit" class="form-control btn btn-lg btn-success btn-block btn-url" value="Submit" >
       </div>
 
     </form>
+
+
+    <div ng-repeat="service in ready_services">
+      <div ng-include="'/media/service.html'"></div>
+    </div>
   </div>
+
+
+
 </div>

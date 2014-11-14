@@ -13,16 +13,36 @@ pingwin.config([
 pingwin.controller("Home", [
   "$scope", "$http", "$route", function($scope, $http, $route) {
     
-    $scope.name = "scope";
-    $scope.url = ""
+    $scope.services = [];
+    $scope.form = {url: "", name: ""};
+    $scope.ready_services = [];
+    $scope.loading = false;
 
     $scope.get_services = function(){
-      console.log("get");
+      $http.post("/api/get_services").success(function(data) {
+        $scope.services = data;
+      });
     };
 
-    $scope.get_ping = function(){
-      console.log($scope.url);
+    $scope.get_pings = function(){
+      $scope.loading = true;
+      for (i = 0; i < $scope.services.length; i++) { 
+        service = $scope.services[i];
+        $scope.get_ping(service);
+      }
     };
+
+    $scope.get_ping = function(service){
+      params = {service: service.id, name: $scope.form.url};
+      // params = {name: $scope.form.url};
+      $http.post("/api/get_ping", params).success(function(data) {
+        data.name = service.name;
+        data.country = service.country;
+        $scope.ready_services.push(data);
+      });
+    };
+
+    $scope.get_services();
 
 
   }

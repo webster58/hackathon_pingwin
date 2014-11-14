@@ -1,0 +1,30 @@
+
+    <table class="table table-hover table-bordered">
+      <tr class="info">
+        <th colspan="2">{{service.country}}</th>
+      </tr>
+      <tr>
+        <td>Destination:</td>
+        <td>{{service.destination}}</td>
+      </tr> 
+      <tr>
+        <td>Destination ip:</td>
+        <td>{{service.destination_ip}}</td>
+      </tr>  
+      <tr>
+        <td>Response code:</td>
+        <td ng-class="" >{{service.ret_code}}</td>
+      </tr>  
+      <tr>
+        <td>Average time:</td>
+        <td>{{service.avg_rtt}}</td>
+      </tr>
+      <tr>
+        <td>Min time:</td>
+        <td>{{service.min_rtt}}</td>
+      </tr>  
+      <tr>
+        <td>Max time:</td>
+        <td>{{service.max_rtt}}</td>
+      </tr>  
+    </table>

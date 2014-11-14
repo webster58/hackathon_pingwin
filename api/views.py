@@ -59,9 +59,9 @@ def get_services(request):
 def get_ping(request):
 
     _data = {}
-    if request.method == "GET"
+    if request.method == "GET":
         _data = request.GET
-    if request.method == "POST"
+    if request.method == "POST":
         _data = request.POST
 
 
@@ -85,13 +85,23 @@ def get_ping(request):
     else:
         data['service'] = 'localhost'
         data['service_id'] = 0
-        r = pyping.ping(_data["name"])
+        if True:
+            # r = pyping.ping(_data["name"])
 
-        data['ret_code'] = r.ret_code
-        data['destination'] = r.destination
-        data['max_rtt'] = r.max_rtt
-        data['avg_rtt'] = r.avg_rtt
-        data['min_rtt'] = r.min_rtt
-        data['destination_ip'] = r.destination_ip
+            data['ret_code'] = "200"
+            data['destination'] = "wp.pl"
+            data['max_rtt'] = 200
+            data['avg_rtt'] = 100
+            data['min_rtt'] = 50
+            data['destination_ip'] = "123.213.123.123"
+        else:
+            r = pyping.ping(_data["name"])
+
+            data['ret_code'] = r.ret_code
+            data['destination'] = r.destination
+            data['max_rtt'] = r.max_rtt
+            data['avg_rtt'] = r.avg_rtt
+            data['min_rtt'] = r.min_rtt
+            data['destination_ip'] = r.destination_ip
 
     return HttpResponse(json.dumps(data), content_type="application/json")
