@@ -5,7 +5,7 @@
       <div class="form-group">
         <input type="text" class="form-control url-input" ng-model="form.url" placeholder="Type url" >
         <br/>
-        <input type="submit" class="form-control btn btn-lg btn-success btn-block btn-url" value="Submit" >
+        <input type="submit" ng-disabled="loading.is" class="form-control btn btn-lg btn-success btn-block btn-url" value="Submit" >
       </div>
 
     </form>

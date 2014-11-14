@@ -16,7 +16,7 @@ pingwin.controller("Home", [
     $scope.services = [];
     $scope.form = {url: "", name: ""};
     $scope.ready_services = [];
-    $scope.loading = false;
+    $scope.loading = {is: false};
 
     $scope.get_services = function(){
       $http.post("/api/get_services").success(function(data) {
@@ -25,7 +25,8 @@ pingwin.controller("Home", [
     };
 
     $scope.get_pings = function(){
-      $scope.loading = true;
+      $scope.loading.is = true;
+      $scope.ready_services = [];
       for (i = 0; i < $scope.services.length; i++) { 
         service = $scope.services[i];
         $scope.get_ping(service);
@@ -35,10 +36,13 @@ pingwin.controller("Home", [
     $scope.get_ping = function(service){
       params = {service: service.id, name: $scope.form.url};
       // params = {name: $scope.form.url};
-      $http.get("/api/get_ping?service="+service.id+"&name="+$scope.form.url).success(function(data) {
+      $http.get("/api/get_ping?name="+$scope.form.url+"&service="+service.id).success(function(data) {
         data.name = service.name;
         data.country = service.country;
         $scope.ready_services.push(data);
+        if($scope.ready_services.length == $scope.services.length){
+          $scope.loading.is = false;
+        }
       });
     };
 
