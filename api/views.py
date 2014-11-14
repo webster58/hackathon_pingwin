@@ -13,6 +13,8 @@ import subprocess
 import pyping
 import pxssh
 import getpass
+from django.views.decorators.csrf import csrf_exempt
+
 
 def isInt(string):
     try:
@@ -27,7 +29,7 @@ def isFloat(string):
     except: return False
 
 
-
+@csrf_exempt
 @require_http_methods(["GET", "POST"])
 def api_test(request):
     data = {}
@@ -35,7 +37,7 @@ def api_test(request):
     data['message'] = 'You messed up'
     return HttpResponse(json.dumps(data), content_type="application/json")
 
-
+@csrf_exempt
 @require_http_methods(["GET", "POST"])
 def get_services(request):
 
@@ -52,10 +54,15 @@ def get_services(request):
 
     return HttpResponse(json.dumps(data), content_type="application/json")
 
+@csrf_exempt
 @require_http_methods(["GET", "POST"])
 def get_ping(request):
 
-    _data = request.GET
+    _data = {}
+    if request.method == "GET"
+        _data = request.GET
+    if request.method == "POST"
+        _data = request.POST
 
 
     data = {}
@@ -68,21 +75,8 @@ def get_ping(request):
     if service:
         data['service'] = service.name
         data['service_id'] = service.pk
-'''
-        s = pxssh.pxssh()
-        if not s.login ('localhost', 'myusername', 'mypassword'):
-            print "SSH session failed on login."
-            print str(s)
-        else:
-            print "SSH session login successful"
-            s.sendline ('uptime')
-            s.prompt()         # match the prompt
-            print s.before     # print everything before the prompt.
-            s.logout()
-            
-        #We can also execute multiple command like this:
-        s.sendline ('uptime;df -h')
-'''
+
+
 
 
 
