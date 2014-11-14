@@ -94,8 +94,7 @@ def get_ping(request):
                     s.sendline ('ping' + " -c 4 " + _data["name"])
                     s.prompt()         # match the prompt
                     raw_response_data = s.before
-                    print s.before     # print everything before the prompt.
-                    s.logout()
+                    print s.before     # print everything
 
                     match = re.search('([\d]*\.[\d]*)/([\d]*\.[\d]*)/([\d]*\.[\d]*)/([\d]*\.[\d]*)', raw_response_data)
 
@@ -110,9 +109,21 @@ def get_ping(request):
                         if len(ip):
                             data['destination_ip'] = ip[0]
 
-                    data['ret_code'] = 0
                     data['destination'] = _data["name"]
 
+
+                    s.sendline ('wget' + " --spider " + _data["name"])
+                    s.prompt()         # match the prompt
+                    raw_response_data = s.before
+                    print s.before     # print everything before the prompt.
+                    s.logout()
+
+                    ret_code = re.findall( r'awaiting response... [0-9]{3}', raw_response_data )
+                    if ret_code:
+                        if len(ret_code):
+                            data['ret_code'] = re.findall( r'[0-9]{3}', ret_code[1] )[0]
+
+                    data['destination'] = _data["name"]
     else:
         data['service'] = 'localhost'
         data['service_id'] = 0
