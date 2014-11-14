@@ -12,6 +12,7 @@
     <link rel="shortcut icon" href="{% static "ico/favicon.ico" %}">
 
     <title>{% block head_title %}Hackathon{% endblock %}</title>
+
 {% block js-css-imports %}
     <!-- Bootstrap core CSS -->
     <link rel="stylesheet" href="{% static "css/bootstrap/bootstrap.css" %}"/>
@@ -21,14 +22,13 @@
     <script src="{% static "js/angularjs/angular-route.js" %}"></script>
     <script src="{% static "js/angularjs/angular-sanitize.js" %}"></script>
 
+    <script src="{% static "js/config.js" %}"></script>
 
     {% compressed_css 'main' %}
     {% compressed_js 'main' %}
 
 {% endblock %}
-    <script>
-        var app = angular.module('pingwin', ["ngResource", "ngRoute", "ngSanitize"]);
-    </script>
+    
 
 {% block custom-styles %}
     <style>
@@ -40,7 +40,8 @@
 {% endblock %}
   </head>
   <body>
-
+    
+    <div ng-view></div>
 
   </body>
 </html>

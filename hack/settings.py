@@ -111,7 +111,8 @@ PIPELINE_CSS = {
 PIPELINE_JS = {
     'main': {
         'source_filenames': (
-          'coffee/*.coffee',
+          'coffee/routes.coffee',
+          'coffee/HomeController.coffee',
           #'coffee/collections/*.coffee',
           #'coffee/application.coffee',
         ),
