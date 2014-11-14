@@ -3,7 +3,14 @@ from django.template.context import RequestContext
 from models import *
 # Create your views here.
 
-
-
 def index(request):
     return render_to_response("index.html", RequestContext(request))
+
+
+def pinger(request):
+
+
+    
+
+
+    return render_to_response("pinger.html", RequestContext(request))
