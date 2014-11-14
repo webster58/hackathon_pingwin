@@ -40,8 +40,8 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql', 
         'NAME': 'hack',
-        'USER': 'hack',
-        'PASSWORD': 'btpx2vhaKw9DSJEM',
+        'USER': 'root',
+        'PASSWORD': 'qwe',
         'HOST': 'localhost',   # Or an IP Address that your DB is hosted on
         'PORT': '3306',
     }
@@ -97,7 +97,7 @@ PIPELINE_CSS_COMPRESSOR = 'pipeline.compressors.cssmin.CSSMinCompressor'
 PIPELINE_CSS = {
     'main': {
         'source_filenames': (
-          'sass/sample.sass',
+          'sass/*.sass',
           #'sass/colors/*.sass',
           #'sass/layers.sass'
         ),
@@ -111,7 +111,7 @@ PIPELINE_CSS = {
 PIPELINE_JS = {
     'main': {
         'source_filenames': (
-          'coffee/sample.coffee',
+          'coffee/*.coffee',
           #'coffee/collections/*.coffee',
           #'coffee/application.coffee',
         ),
